@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            max-width: 100%;
+        }
+
+        body {
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-style: normal;
+            margin: 0;
+            padding: 0;
+            color: #330072;
+        }
+
+        .header {
+            display: flex;
+            background: #330072;
+            border-radius: 0 0 36px 36px;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+            padding: 4px 0 0 42px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header__decorative-line-container {
+            position: absolute;
+            top: 2px;
+            right: -8%;
+        }
+
+        .layout {
+            max-width: 100%;
+            padding: 0 28px 12px;
+            height: 100%;
+            margin: 0;
+
+
+        }
+
+        .layout__title {
+            color: #E4A4FF;
+            font-weight: 600;
+            font-size: 32px;
+        }
+
+        .layout__subtitle {
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .layout__text {
+            display: block;
+            font-size: 11px;
+            font-weight: 400;
+        }
+
+        .layout__table {
+            margin: 20px 0;
+        }
+
+        .layout__row {
+            display: grid;
+            padding: 4px 0;
+            grid-template-columns: 1.1fr repeat(3, 1fr);
+            border-radius: 4px;
+        }
+
+        .layout__row--no-padding {
+            padding: 0;
+            border-radius: 0;
+        }
+
+        .layout__row--background {
+            position: relative;
+
+            &::before {
+
+                content: "";
+                position: absolute;
+                top: 50%;
+                border-radius: 4px;
+                transform: translateY(-50%);
+                left: -4px;
+                width: calc(100% + 8px);
+                height: calc(100% + 8px);
+                background-color: #6429CD14;
+            }
+        }
+
+        .layout__ceil {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            font-size: 10px;
+            padding: 0 6px;
+        }
+
+        .layout__ceil--no-center {
+            display: flex;
+            align-items: start;
+            justify-content: start;
+        }
+
+        .layout__chip {
+            margin: 0 auto;
+            color: #330072;
+            background-color: #F0DCFF;
+            font-weight: 500;
+            border-radius: 42px;
+            padding: 2px 4px;
+            font-size: 7px;
+        }
+
+        br {
+            display: block;
+            margin: 10px 0;
+            content: "";
+        }
+
+        .layout__salary {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .layout__table-text {
+            font-size: 10px;
+            line-height: 12px;
+            font-weight: 500;
+        }
+
+        .layout__table-text--centered {
+            text-align: center;
+        }
+
+        .layout__table-text-bold {
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .layout__centered-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .layout__colored-box {
+            background-color: #6429CD14;
+            padding: 6px 12px 10px;
+            border-radius: 4px;
+        }
+
+        .layout__footer {
+            margin: 40px 0 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="max-width: 612px; margin: 0 auto;">
+        <header class="header">
+            <svg width="106" height="30" viewBox="0 0 106 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_12879_10752)">
+                    <path
+                        d="M25.5121 3.25195C24.1759 3.25195 22.5898 3.98296 21.7535 5.38725C21.6766 5.51229 21.4843 5.45458 21.4843 5.3103V3.54051C21.4843 3.46356 21.417 3.39623 21.3401 3.39623H18.985C18.9081 3.39623 18.8408 3.46356 18.8408 3.54051V17.8816C18.8408 17.9586 18.9081 18.0259 18.985 18.0259H21.3401C21.417 18.0259 21.4843 17.9586 21.4843 17.8816V10.7736C21.4843 8.3305 22.7917 5.84894 25.2718 5.84894C25.8005 5.84894 26.185 5.91627 26.6272 6.07978L26.7137 6.10864V3.37699H26.6656C26.2811 3.28081 25.9254 3.25195 25.5121 3.25195Z"
+                        fill="white" />
+                    <path
+                        d="M82.6698 3.10742C80.6415 3.10742 78.892 4.1366 78.0172 5.82945C77.9595 5.93525 77.8153 5.93525 77.7577 5.82945C76.931 4.09812 75.3545 3.10742 73.3838 3.10742C71.7112 3.10742 70.2309 3.83843 69.2888 5.07921C69.2023 5.18501 69.0293 5.1273 69.0293 4.99264V3.54025C69.0293 3.46331 68.962 3.39598 68.8851 3.39598H66.5299C66.453 3.39598 66.3857 3.46331 66.3857 3.54025V17.8814C66.3857 17.9583 66.453 18.0257 66.5299 18.0257H68.8851C68.962 18.0257 69.0293 17.9583 69.0293 17.8814V10.7733C69.0293 7.63772 70.625 5.53128 72.9993 5.53128C74.7489 5.53128 75.7966 6.99328 75.7966 9.43637V17.8814C75.7966 17.9583 75.8639 18.0257 75.9408 18.0257H78.296C78.3729 18.0257 78.4402 17.9583 78.4402 17.8814V10.7733C78.4402 7.58963 79.9878 5.53128 82.3814 5.53128C84.1501 5.53128 85.2075 6.99328 85.2075 9.43637V17.8814C85.2075 17.9583 85.2748 18.0257 85.3517 18.0257H87.7069C87.7838 18.0257 87.8511 17.9583 87.8511 17.8814V9.06125C87.8511 5.44471 85.8228 3.10742 82.6698 3.10742Z"
+                        fill="white" />
+                    <path
+                        d="M61.0989 4.30907C62.3094 4.30907 63.2906 3.34445 63.2906 2.15454C63.2906 0.964619 62.3094 0 61.0989 0C59.8885 0 58.9072 0.964619 58.9072 2.15454C58.9072 3.34445 59.8885 4.30907 61.0989 4.30907Z"
+                        fill="white" />
+                    <path
+                        d="M63.2813 10.6194C63.2813 6.05062 59.5227 2.33789 54.8989 2.33789C50.2752 2.33789 46.5166 6.041 46.5166 10.6194C46.5166 15.1978 50.2752 18.9009 54.8989 18.9009C59.5227 18.9009 63.2813 15.1978 63.2813 10.6194ZM49.1505 10.6482C49.1505 7.48377 51.7459 4.91564 54.9566 4.91564C58.1673 4.91564 60.7627 7.48377 60.7627 10.6482C60.7627 13.8127 58.1673 16.3809 54.9566 16.3809C51.7459 16.3809 49.1505 13.8127 49.1505 10.6482Z"
+                        fill="white" />
+                    <path
+                        d="M57.5707 18.6504C54.3985 18.6504 51.8223 21.1897 51.8223 24.3253C51.8223 27.4609 54.3985 30.0002 57.5707 30.0002C60.7429 30.0002 63.3191 27.4609 63.3191 24.3253C63.3191 21.1897 60.7429 18.6504 57.5707 18.6504ZM57.6092 27.634C55.7635 27.634 54.2639 26.1528 54.2639 24.3349C54.2639 22.517 55.7635 21.0358 57.6092 21.0358C59.4548 21.0358 60.9544 22.517 60.9544 24.3349C60.9544 26.1528 59.4548 27.634 57.6092 27.634Z"
+                        fill="white" />
+                    <path
+                        d="M7.81518 2.83789C5.73882 2.83789 3.86433 3.63622 2.46087 4.93472V2.85713H0V10.1864C0 10.3114 0 10.4269 0 10.5519C0 10.6769 0 10.7924 0 10.9174V23.4406H2.47048V16.1787C3.87395 17.4772 5.74844 18.2755 7.82479 18.2755C12.1409 18.2755 15.64 14.8225 15.64 10.5615C15.64 6.30054 12.1409 2.83789 7.81518 2.83789ZM7.87286 15.9286C4.88329 15.9286 2.46087 13.5336 2.46087 10.5904C2.46087 7.64712 4.88329 5.25213 7.87286 5.25213C10.8624 5.25213 13.2848 7.64712 13.2848 10.5904C13.2848 13.5336 10.8624 15.9286 7.87286 15.9286Z"
+                        fill="white" />
+                    <path
+                        d="M43.5073 10.2441V2.83789H41.0464V4.98281C39.643 3.68432 37.7685 2.88598 35.6921 2.88598C31.376 2.88598 27.877 6.33901 27.877 10.6C27.877 14.861 31.376 18.314 35.6921 18.314C37.7685 18.314 39.643 17.5157 41.0464 16.2172V18.2851H43.5073V10.9559C43.5073 10.8308 43.5073 10.7154 43.5073 10.5904C43.5073 10.4653 43.5073 10.3499 43.5073 10.2249V10.2441ZM35.6441 15.9286C32.6545 15.9286 30.2321 13.5336 30.2321 10.5904C30.2321 7.64712 32.6545 5.25213 35.6441 5.25213C38.6336 5.25213 41.0561 7.64712 41.0561 10.5904C41.0561 13.5336 38.6336 15.9286 35.6441 15.9286Z"
+                        fill="white" />
+                    <path
+                        d="M106 10.6096C106 10.4846 106 10.3691 106 10.2441V2.83789H103.54V4.98281C102.136 3.68432 100.262 2.88598 98.1853 2.88598C93.8692 2.88598 90.3701 6.33901 90.3701 10.6C90.3701 14.861 93.8692 18.314 98.1853 18.314C100.262 18.314 102.136 17.5157 103.54 16.2172V18.2851H106V10.9559C106 10.8308 106 10.7154 106 10.5904V10.6096ZM98.1276 15.9286C95.1381 15.9286 92.7156 13.5336 92.7156 10.5904C92.7156 7.64712 95.1381 5.25213 98.1276 5.25213C101.117 5.25213 103.54 7.64712 103.54 10.5904C103.54 13.5336 101.117 15.9286 98.1276 15.9286Z"
+                        fill="white" />
+                </g>
+                <defs>
+                    <clipPath id="clip0_12879_10752">
+                        <rect width="106" height="30" fill="white" />
+                    </clipPath>
+                </defs>
+            </svg>
+
+            <picture class="header__decorative-line-container">
+                <svg width="320" height="64" viewBox="0 0 321 65" fill="none" xmlns="http://wfww.w3.org/2000/svg">
+                    <path
+                        d="M28.9073 39.2592C30.4297 37.4556 32.0394 35.7295 33.7461 34.0907C34.5704 33.3052 35.414 32.5295 36.2868 31.7925C36.694 31.4434 37.1013 31.104 37.5086 30.7646C37.6831 30.6191 37.8577 30.4737 38.0419 30.3282C38.1486 30.241 39.3413 29.3003 38.3813 30.047C37.4213 30.7937 39.0989 29.5234 39.2929 29.3876C39.7292 29.0773 40.1656 28.767 40.6019 28.4664C41.6104 27.7779 42.6286 27.1185 43.6759 26.4785C45.625 25.2858 47.642 24.1997 49.6978 23.2106C50.2505 22.9488 50.8033 22.6869 51.356 22.4445C51.5694 22.3475 51.773 22.2603 51.9863 22.173C52.8591 21.7754 50.619 22.7257 51.5111 22.3669C52.6457 21.9209 53.7803 21.4651 54.9245 21.0675C57.1549 20.2918 59.424 19.6227 61.7222 19.0796C62.7597 18.8372 63.807 18.6142 64.8543 18.4202C65.4555 18.3136 66.0568 18.2069 66.658 18.1099C66.881 18.0711 67.1137 18.042 67.3368 18.0032C68.2677 17.8578 65.6495 18.1972 66.9877 18.0517C69.2859 17.7996 71.5744 17.6251 73.8823 17.5863C76.5005 17.5475 79.1284 17.6735 81.7369 17.9257C82.3188 17.9839 82.9103 18.0517 83.4921 18.1196C84.8206 18.2651 83.2206 18.042 83.0557 18.0517C83.3466 18.0323 83.783 18.1584 84.0545 18.1972C85.383 18.4008 86.7115 18.6336 88.0303 18.8954C93.0922 19.9039 98.0571 21.3293 102.944 22.9875C107.832 24.6457 112.758 26.6142 117.587 28.6312C117.907 28.767 118.217 28.9125 118.537 29.0288C118.518 29.0288 117.238 28.4761 117.994 28.7961C118.547 29.0288 119.109 29.2712 119.662 29.504C120.932 30.047 122.203 30.59 123.473 31.1331C125.927 32.1901 128.38 33.247 130.843 34.2846C141.228 38.6774 151.721 42.6629 162.572 45.7466C173.103 48.743 183.837 51.0024 194.679 52.5151C205.52 54.0279 217.38 55.0267 228.812 55.0461C240.245 55.0655 251.843 54.5321 262.946 51.8363C283.455 46.8617 299.223 32.704 313.235 17.6542C314.864 15.9087 316.484 14.1438 318.093 12.3789C320.663 9.5668 321.08 4.83462 318.093 2.09035C315.301 -0.479372 310.549 -0.906043 307.805 2.09035C301.24 9.27588 294.617 16.4614 287.208 22.8033C286.306 23.5791 285.385 24.3354 284.464 25.0821C284.222 25.2761 283.969 25.47 283.717 25.6736C283.097 26.1779 284.27 25.2567 284.251 25.2664C283.678 25.6833 283.116 26.1294 282.544 26.5464C280.575 27.9912 278.558 29.3488 276.474 30.6191C274.389 31.8895 272.391 32.9755 270.267 33.984C269.773 34.2265 269.269 34.4495 268.764 34.6822C267.106 35.4289 270.015 34.1974 268.318 34.8762C267.126 35.361 265.923 35.7974 264.701 36.2047C262.093 37.0774 259.426 37.7756 256.73 38.3477C255.421 38.6192 254.112 38.8617 252.793 39.0847C252.182 39.1817 251.562 39.2689 250.941 39.3659C249.904 39.5308 252.328 39.201 251.281 39.3174C250.834 39.3659 250.398 39.4241 249.952 39.4823C244.541 40.1126 239.082 40.3647 233.632 40.4714C222.684 40.675 211.726 40.1126 200.856 38.7938C200.235 38.7162 199.605 38.6386 198.984 38.561C198.596 38.5126 197.559 38.4059 199.314 38.6095C198.955 38.5707 198.606 38.5126 198.247 38.4641C196.919 38.2798 195.581 38.0762 194.252 37.8629C191.508 37.4265 188.764 36.9416 186.029 36.418C180.657 35.3707 175.314 34.1489 170.029 32.7331C159.537 29.9306 149.277 26.3621 139.25 22.1924C138.698 21.9597 138.145 21.7075 137.582 21.4942C139.464 22.2021 137.321 21.3875 136.942 21.2227C135.672 20.6796 134.411 20.1366 133.141 19.5936C130.765 18.5754 128.39 17.5475 126.004 16.5293C120.758 14.299 115.492 12.0977 110.14 10.1486C99.9287 6.42494 89.3104 3.70007 78.4108 3.12794C58.1731 2.07096 37.8286 9.91589 23.2539 23.9476C21.6054 25.5379 20.0538 27.2058 18.5799 28.9512C16.1265 31.8507 15.5156 36.4277 18.5799 39.2398C21.2854 41.7223 26.2406 42.3429 28.8685 39.2398L28.9073 39.2592Z"
+                        fill="#E7DDF8" />
+                    <path
+                        d="M11.6462 64.9898C18.0782 64.9898 23.2924 59.7756 23.2924 53.3436C23.2924 46.9116 18.0782 41.6974 11.6462 41.6974C5.21418 41.6974 0 46.9116 0 53.3436C0 59.7756 5.21418 64.9898 11.6462 64.9898Z"
+                        fill="#E7DDF8" />
+                </svg>
+            </picture>
+        </header>
+
+        <main class="layout">
+            <h1 class="layout__title" style="margin: 12px 0 2px;">Summer</h1>
+            <h2 class="layout__subtitle">¡Queremos tenerte en nuestro equipo! y tenemos una propuesta para ti</h2>
+
+            <p class="layout__text">
+                Estamos seguros de que, en buena compañía, vamos a mejorar la vida de la gente transformando empresas.
+                <br>
+                <br>
+                En Pragma diseñamos las opciones con salario flexible para mejorar tu flujo de caja; el valor de los
+                ingresos flexibilizados (pensión voluntaria / tarjeta de alimentación) son asegurados para tu
+                tranquilidad y la de tu familia; pero si la aseguradora no te admite serás Opción 1 obligatoriamente.
+
+                <br />
+                <br />
+                Todos los montos están expresados en pesos colombianos.
+            </p>
+
+            <h2 class="layout__subtitle" style="margin: 12px 0 0;">Tienes 3 opciones para recibir tu compensación</h2>
+
+            <div class="layout__table">
+                <div class="layout__row layout__row--no-padding" style="margin: 0 0 6px;">
+                    <div class="layout__ceil"></div>
+                    <div class="layout__ceil">
+                        <span class="layout__chip">Opción 1</span>
+                    </div>
+                    <div class="layout__ceil">
+                        <span class="layout__chip">Opción 2</span>
+                    </div>
+                    <div class="layout__ceil">
+                        <span class="layout__chip">Opción 3</span>
+                    </div>
+                </div>
+                <div class="layout__row layout__row--no-padding">
+                    <div class="layout__ceil"></div>
+                    <div class="layout__ceil" style="font-size: 9px; font-weight: 500;">Salario básico</div>
+                    <div class="layout__ceil" style="font-size: 9px; font-weight: 500;">Salario básico</div>
+                    <div class="layout__ceil" style="font-size: 9px; font-weight: 500;">Salario básico</div>
+                </div>
+                <div class="layout__row layout__row--no-padding" style="margin: 0 0 4px;">
+                    <div class="layout__ceil"></div>
+                    <div class="layout__ceil layout__salary">$4.000.000</div>
+                    <div class="layout__ceil layout__salary">$3.200.00</div>
+                    <div class="layout__ceil layout__salary">3.200.000</div>
+                </div>
+                <div class="layout__row layout__row--background">
+                    <div class="layout__ceil layout__ceil--no-center">Pensión voluntaria (PV)</div>
+                    <div class="layout__ceil layout__salary">
+                        <svg width="12" height="12" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="4.95322" cy="5.8624" r="4.95615" fill="#ED0039" />
+                            <g clip-path="url(#clip0_12879_10789)" filter="url(#filter0_d_12879_10789)">
+                                <path
+                                    d="M7.33305 3.6639C7.3969 3.60004 7.3969 3.49651 7.33305 3.43266C7.26919 3.3688 7.16566 3.3688 7.10181 3.43266L4.92826 5.6062L2.75472 3.43266C2.69086 3.3688 2.58733 3.3688 2.52348 3.43266C2.45962 3.49651 2.45962 3.60004 2.52348 3.6639L4.69702 5.83744L2.52348 8.01099C2.45962 8.07484 2.45962 8.17837 2.52348 8.24223C2.58733 8.30608 2.69086 8.30608 2.75472 8.24223L4.92826 6.06868L7.10181 8.24223C7.16566 8.30608 7.26919 8.30608 7.33305 8.24223C7.3969 8.17837 7.3969 8.07484 7.33305 8.01099L5.1595 5.83744L7.33305 3.6639Z"
+                                    fill="white" />
+                            </g>
+                            <defs>
+                                <filter id="filter0_d_12879_10789" x="0.823534" y="1.73271" width="8.20938"
+                                    height="8.21035" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                    <feColorMatrix in="SourceAlpha" type="matrix"
+                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                    <feOffset />
+                                    <feGaussianBlur stdDeviation="0.826026" />
+                                    <feComposite in2="hardAlpha" operator="out" />
+                                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0" />
+                                    <feBlend mode="normal" in2="BackgroundImageFix"
+                                        result="effect1_dropShadow_12879_10789" />
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_12879_10789"
+                                        result="shape" />
+                                </filter>
+                                <clipPath id="clip0_12879_10789">a
+                                    <rect width="4.90535" height="4.90535" fill="white"
+                                        transform="translate(2.47559 3.38477)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="layout__ceil layout__table-text-bold">$1.100.000</div>
+                    <div class="layout__ceil layout__table-text-bold">$500.000</div>
+                </div>
+                <div class="layout__row" style="margin: 4px 0;">
+                    <div class="layout__ceil layout__ceil--no-center">Tarjeta de alimentación <span
+                            style="display: inline;color: #F8AF3C; font-size: 1.25rem; transform: translateY(-6px) translateX(2px);">
+                            * </span></div>
+                    <div class="layout__ceil layout__salary">
+                        <svg width="12" height="12" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="4.95322" cy="5.8624" r="4.95615" fill="#ED0039" />
+                            <g clip-path="url(#clip0_12879_10789)" filter="url(#filter0_d_12879_10789)">
+                                <path
+                                    d="M7.33305 3.6639C7.3969 3.60004 7.3969 3.49651 7.33305 3.43266C7.26919 3.3688 7.16566 3.3688 7.10181 3.43266L4.92826 5.6062L2.75472 3.43266C2.69086 3.3688 2.58733 3.3688 2.52348 3.43266C2.45962 3.49651 2.45962 3.60004 2.52348 3.6639L4.69702 5.83744L2.52348 8.01099C2.45962 8.07484 2.45962 8.17837 2.52348 8.24223C2.58733 8.30608 2.69086 8.30608 2.75472 8.24223L4.92826 6.06868L7.10181 8.24223C7.16566 8.30608 7.26919 8.30608 7.33305 8.24223C7.3969 8.17837 7.3969 8.07484 7.33305 8.01099L5.1595 5.83744L7.33305 3.6639Z"
+                                    fill="white" />
+                            </g>
+                            <defs>
+                                <filter id="filter0_d_12879_10789" x="0.823534" y="1.73271" width="8.20938"
+                                    height="8.21035" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                    <feColorMatrix in="SourceAlpha" type="matrix"
+                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                    <feOffset />
+                                    <feGaussianBlur stdDeviation="0.826026" />
+                                    <feComposite in2="hardAlpha" operator="out" />
+                                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0" />
+                                    <feBlend mode="normal" in2="BackgroundImageFix"
+                                        result="effect1_dropShadow_12879_10789" />
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_12879_10789"
+                                        result="shape" />
+                                </filter>
+                                <clipPath id="clip0_12879_10789">a
+                                    <rect width="4.90535" height="4.90535" fill="white"
+                                        transform="translate(2.47559 3.38477)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="layout__ceil layout__table-text-bold">
+                        <svg width="12" height="12" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="4.95322" cy="5.8624" r="4.95615" fill="#ED0039" />
+                            <g clip-path="url(#clip0_12879_10789)" filter="url(#filter0_d_12879_10789)">
+                                <path
+                                    d="M7.33305 3.6639C7.3969 3.60004 7.3969 3.49651 7.33305 3.43266C7.26919 3.3688 7.16566 3.3688 7.10181 3.43266L4.92826 5.6062L2.75472 3.43266C2.69086 3.3688 2.58733 3.3688 2.52348 3.43266C2.45962 3.49651 2.45962 3.60004 2.52348 3.6639L4.69702 5.83744L2.52348 8.01099C2.45962 8.07484 2.45962 8.17837 2.52348 8.24223C2.58733 8.30608 2.69086 8.30608 2.75472 8.24223L4.92826 6.06868L7.10181 8.24223C7.16566 8.30608 7.26919 8.30608 7.33305 8.24223C7.3969 8.17837 7.3969 8.07484 7.33305 8.01099L5.1595 5.83744L7.33305 3.6639Z"
+                                    fill="white" />
+                            </g>
+                            <defs>
+                                <filter id="filter0_d_12879_10789" x="0.823534" y="1.73271" width="8.20938"
+                                    height="8.21035" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                    <feColorMatrix in="SourceAlpha" type="matrix"
+                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                    <feOffset />
+                                    <feGaussianBlur stdDeviation="0.826026" />
+                                    <feComposite in2="hardAlpha" operator="out" />
+                                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0" />
+                                    <feBlend mode="normal" in2="BackgroundImageFix"
+                                        result="effect1_dropShadow_12879_10789" />
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_12879_10789"
+                                        result="shape" />
+                                </filter>
+                                <clipPath id="clip0_12879_10789">a
+                                    <rect width="4.90535" height="4.90535" fill="white"
+                                        transform="translate(2.47559 3.38477)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="layout__ceil layout__table-text-bold">$1.000.000</div>
+                </div>
+                <div class="layout__row layout__row--background" style="margin: 4px 0;">
+                    <div class="layout__ceil layout__ceil--no-center">
+                        <div style="display: flex; flex-direction: column;gap: 4px;">
+                            <span class="layout__table-text-bold">Flujo de caja anual</span>
+                            <p class="layout__table-text">
+                                Todo el dinero que recibes en un año después de deducciones, incluyendo las prestaciones
+                                sociales.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="layout__ceil layout__table-text-bold">$53.600.000</div>
+                    <div class="layout__ceil layout__table-text-bold">
+
+                        <div class="layout__centered-column">
+
+
+                            <div class="layout__centered-column">
+                                <span class="layout__table-text-bold">$56.272.000</span>
+                                <p class="layout__table-text layout__table-text--centered">
+                                    Si ahorras 10 años la PV o usas la PV en compra de vivienda.
+                                </p>
+                            </div>
+
+                            <svg width="85" height="9" viewBox="0 0 85 9" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_12879_10791)">
+                                    <path d="M81.3643 4.21875L1.65278 4.21875" stroke="#6429CD" stroke-width="0.413013"
+                                        stroke-linecap="round" />
+                                    <g filter="url(#filter0_dd_12879_10791)">
+                                        <path d="M83.0156 4.21875L81.3345 4.21875" stroke="#6429CD"
+                                            stroke-width="1.23904" stroke-linecap="round" />
+                                    </g>
+                                    <g filter="url(#filter1_dd_12879_10791)">
+                                        <path d="M3.30469 4.21875L1.62359 4.21875" stroke="#6429CD"
+                                            stroke-width="1.23904" stroke-linecap="round" />
+                                    </g>
+                                </g>
+                                <defs>
+                                    <filter id="filter0_dd_12879_10791" x="78.2368" y="2.36057" width="7.87608"
+                                        height="6.19444" filterUnits="userSpaceOnUse"
+                                        color-interpolation-filters="sRGB">
+                                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix"
+                                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset dy="1.23904" />
+                                        <feGaussianBlur stdDeviation="1.23904" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix"
+                                            values="0 0 0 0 0.392157 0 0 0 0 0.160784 0 0 0 0 0.803922 0 0 0 0.4 0" />
+                                        <feBlend mode="normal" in2="BackgroundImageFix"
+                                            result="effect1_dropShadow_12879_10791" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix"
+                                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset dy="1.65205" />
+                                        <feGaussianBlur stdDeviation="0.826026" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix"
+                                            values="0 0 0 0 0.392157 0 0 0 0 0.160784 0 0 0 0 0.803922 0 0 0 0.12 0" />
+                                        <feBlend mode="normal" in2="effect1_dropShadow_12879_10791"
+                                            result="effect2_dropShadow_12879_10791" />
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_12879_10791"
+                                            result="shape" />
+                                    </filter>
+                                    <filter id="filter1_dd_12879_10791" x="-1.47417" y="2.36057" width="7.87608"
+                                        height="6.19444" filterUnits="userSpaceOnUse"
+                                        color-interpolation-filters="sRGB">
+                                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix"
+                                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset dy="1.23904" />
+                                        <feGaussianBlur stdDeviation="1.23904" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix"
+                                            values="0 0 0 0 0.392157 0 0 0 0 0.160784 0 0 0 0 0.803922 0 0 0 0.4 0" />
+                                        <feBlend mode="normal" in2="BackgroundImageFix"
+                                            result="effect1_dropShadow_12879_10791" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix"
+                                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset dy="1.65205" />
+                                        <feGaussianBlur stdDeviation="0.826026" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix"
+                                            values="0 0 0 0 0.392157 0 0 0 0 0.160784 0 0 0 0 0.803922 0 0 0 0.12 0" />
+                                        <feBlend mode="normal" in2="effect1_dropShadow_12879_10791"
+                                            result="effect2_dropShadow_12879_10791" />
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_12879_10791"
+                                            result="shape" />
+                                    </filter>
+                                    <clipPath id="clip0_12879_10791">
+                                        <rect width="84.6676" height="8.26026" fill="white"
+                                            transform="translate(0 0.0878906)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+
+                            <div class="layout__centered-column">
+                                <span class="layout__table-text-bold">$56.272.000</span>
+                                <p class="layout__table-text layout__table-text--centered">
+                                    Si retiras los aportes de PV para tus gastos.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="layout__ceil layout__table-text-bold">
+
+                        <div class="layout__centered-column">
+
+
+                            <div class="layout__centered-column">
+                                <span class="layout__table-text-bold">$56.272.000</span>
+                                <p class="layout__table-text layout__table-text--centered">
+                                    Si ahorras 10 años la PV o usas la PV en compra de vivienda.
+                                </p>
+                            </div>
+
+                            <svg width="85" height="9" viewBox="0 0 85 9" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_12879_10791)">
+                                    <path d="M81.3643 4.21875L1.65278 4.21875" stroke="#6429CD" stroke-width="0.413013"
+                                        stroke-linecap="round" />
+                                    <g filter="url(#filter0_dd_12879_10791)">
+                                        <path d="M83.0156 4.21875L81.3345 4.21875" stroke="#6429CD"
+                                            stroke-width="1.23904" stroke-linecap="round" />
+                                    </g>
+                                    <g filter="url(#filter1_dd_12879_10791)">
+                                        <path d="M3.30469 4.21875L1.62359 4.21875" stroke="#6429CD"
+                                            stroke-width="1.23904" stroke-linecap="round" />
+                                    </g>
+                                </g>
+                                <defs>
+                                    <filter id="filter0_dd_12879_10791" x="78.2368" y="2.36057" width="7.87608"
+                                        height="6.19444" filterUnits="userSpaceOnUse"
+                                        color-interpolation-filters="sRGB">
+                                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix"
+                                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset dy="1.23904" />
+                                        <feGaussianBlur stdDeviation="1.23904" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix"
+                                            values="0 0 0 0 0.392157 0 0 0 0 0.160784 0 0 0 0 0.803922 0 0 0 0.4 0" />
+                                        <feBlend mode="normal" in2="BackgroundImageFix"
+                                            result="effect1_dropShadow_12879_10791" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix"
+                                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset dy="1.65205" />
+                                        <feGaussianBlur stdDeviation="0.826026" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix"
+                                            values="0 0 0 0 0.392157 0 0 0 0 0.160784 0 0 0 0 0.803922 0 0 0 0.12 0" />
+                                        <feBlend mode="normal" in2="effect1_dropShadow_12879_10791"
+                                            result="effect2_dropShadow_12879_10791" />
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_12879_10791"
+                                            result="shape" />
+                                    </filter>
+                                    <filter id="filter1_dd_12879_10791" x="-1.47417" y="2.36057" width="7.87608"
+                                        height="6.19444" filterUnits="userSpaceOnUse"
+                                        color-interpolation-filters="sRGB">
+                                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix"
+                                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset dy="1.23904" />
+                                        <feGaussianBlur stdDeviation="1.23904" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix"
+                                            values="0 0 0 0 0.392157 0 0 0 0 0.160784 0 0 0 0 0.803922 0 0 0 0.4 0" />
+                                        <feBlend mode="normal" in2="BackgroundImageFix"
+                                            result="effect1_dropShadow_12879_10791" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix"
+                                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset dy="1.65205" />
+                                        <feGaussianBlur stdDeviation="0.826026" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix"
+                                            values="0 0 0 0 0.392157 0 0 0 0 0.160784 0 0 0 0 0.803922 0 0 0 0.12 0" />
+                                        <feBlend mode="normal" in2="effect1_dropShadow_12879_10791"
+                                            result="effect2_dropShadow_12879_10791" />
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_12879_10791"
+                                            result="shape" />
+                                    </filter>
+                                    <clipPath id="clip0_12879_10791">
+                                        <rect width="84.6676" height="8.26026" fill="white"
+                                            transform="translate(0 0.0878906)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+
+                            <div class="layout__centered-column">
+                                <span class="layout__table-text-bold">$56.272.000</span>
+                                <p class="layout__table-text layout__table-text--centered">
+                                    Si retiras los aportes de PV para tus gastos.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="layout__row" style="margin: 8px 0 0;">
+                    <div class="layout__ceil layout__ceil--no-center">
+                        <span class="layout__table-text-bold">Observaciones</span>
+                    </div>
+                    <div class="layout__ceil">
+                        <span class="layout__table-text layout__table-text--centered" style="padding: 8px 0;">El 100% de
+                            la compensación del pragmático es constitutiva de salario.</span>
+                    </div>
+                    <div class="layout__ceil">
+                        <span class="layout__table-text layout__table-text--centered" style="padding: 8px 0;">Opción más
+                            adecuada si buscas mayor flujo de caja y ahorrar en pago de impuestos.</span>
+                    </div>
+                    <div class="layout__ceil">
+                        <span class="layout__table-text layout__table-text--centered" style="padding: 8px 0;">Opción más
+                            adecuada si buscas mayor flujo de caja y ahorrar en pago de impuestos.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex;gap: 4px;">
+                <span style="color: #F8AF3C; font-size: 24px; transform: translateY(-8px); font-weight: 600;">*</span>
+                <p class="layout__text" style="font-size: 10.5px;">El valor mínimo enviado a la tarjeta es de $400.000 y
+                    hasta un máximo de $1.900.000. Al disminuir el valor de la tarjeta de alimentación, el flujo de caja
+                    también disminuye.</p>
+            </div>
+
+            <div style="display: flex; gap: 8px;">
+                <div class="layout__colored-box" style="flex: 1 0 0;">
+                    <span class="layout__table-text-bold">Tarjeta de alimentación</span>
+                    <p class="layout__table-text" style="font-weight: 400;">
+                        Es una tarjeta VISA libre de impuestos y sin costos asociados para comprar en comercios con
+                        datáfono marcado como alimentos: restaurantes, fruvers, supermercados, entre otros.
+                        *No constituye salario
+                    </p>
+                </div>
+                <div class="layout__colored-box" style="flex: 1 0 0;">
+                    <span class="layout__table-text-bold">Pensión Voluntarias:</span>
+                    <p class="layout__table-text" style="font-weight: 400;">
+                        Consiste en ahorrar y realizar aportes adicionales a la pensión, con beneficios fiscales. Estos
+                        aportes son deducibles de impuestos, lo que reduce la carga tributaria y aumenta el ahorro para
+                        la pensión. Puedes conservar los beneficios si usas estos recursos para la compra de vivienda.
+                        *No constituye salario
+                    </p>
+                </div>
+            </div>
+
+            <p class="layout__table-text-bold" style="font-size: 11px; margin: 12px 0;">
+                No olvides confirmar tu opción elegida en nuestra plataforma, estamos a la espera de tu respuesta para
+                continuar tu proceso
+            </p>
+
+            <footer class="layout__footer">
+                <p class="layout__table-text-bold" style="font-size: 12px; line-height: 4px;">Daniela Arango Moncada</p>
+                <span style="font-size: 12px;">Líder de...</span>
+                <div style="display: flex; gap: 8px;">
+                    <span style="color: #6429CD; font-size: 12px;">daniela.arango@pragma.com.co</span>
+                    <span style="font-size: 12px;">302 893 3804</span>
+                </div>
+
+                <hr style="height: 0;border: none; border-bottom: solid 1px #6429CD; margin: 8px 0;">
+
+                <div style="display: flex;  justify-content: space-between; margin: 8px 0 0;">
+                    <svg width="64" height="18" viewBox="0 0 64 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_12879_10814)">
+                            <path
+                                d="M15.4039 1.95117C14.5972 1.95117 13.6395 2.38977 13.1346 3.23235C13.0881 3.30738 12.9721 3.27275 12.9721 3.18618V2.1243C12.9721 2.07814 12.9314 2.03774 12.885 2.03774H11.463C11.4166 2.03774 11.376 2.07814 11.376 2.1243V10.729C11.376 10.7752 11.4166 10.8156 11.463 10.8156H12.885C12.9314 10.8156 12.9721 10.7752 12.9721 10.729V6.46416C12.9721 4.9983 13.7614 3.50936 15.2588 3.50936C15.578 3.50936 15.8102 3.54976 16.0772 3.64787L16.1294 3.66518V2.0262H16.1004C15.8682 1.96849 15.6535 1.95117 15.4039 1.95117Z"
+                                fill="#1D1D1B" />
+                            <path
+                                d="M49.9139 1.86328C48.6893 1.86328 47.633 2.48079 47.1048 3.4965C47.07 3.55998 46.9829 3.55998 46.9481 3.4965C46.449 2.4577 45.4971 1.86328 44.3073 1.86328C43.2974 1.86328 42.4036 2.30188 41.8348 3.04635C41.7826 3.10983 41.6781 3.07521 41.6781 2.99441V2.12298C41.6781 2.07681 41.6375 2.03641 41.5911 2.03641H40.1691C40.1227 2.03641 40.082 2.07681 40.082 2.12298V10.7277C40.082 10.7738 40.1227 10.8142 40.1691 10.8142H41.5911C41.6375 10.8142 41.6781 10.7738 41.6781 10.7277V6.46283C41.6781 4.58146 42.6416 3.31759 44.0751 3.31759C45.1315 3.31759 45.7641 4.1948 45.7641 5.66065V10.7277C45.7641 10.7738 45.8047 10.8142 45.8511 10.8142H47.2731C47.3195 10.8142 47.3602 10.7738 47.3602 10.7277V6.46283C47.3602 4.5526 48.2946 3.31759 49.7398 3.31759C50.8077 3.31759 51.4461 4.1948 51.4461 5.66065V10.7277C51.4461 10.7738 51.4868 10.8142 51.5332 10.8142H52.9552C53.0016 10.8142 53.0422 10.7738 53.0422 10.7277V5.43558C53.0422 3.26565 51.8176 1.86328 49.9139 1.86328Z"
+                                fill="#1D1D1B" />
+                            <path
+                                d="M36.8897 2.58544C37.6205 2.58544 38.213 2.00667 38.213 1.29272C38.213 0.578771 37.6205 0 36.8897 0C36.1589 0 35.5664 0.578771 35.5664 1.29272C35.5664 2.00667 36.1589 2.58544 36.8897 2.58544Z"
+                                fill="#6429CD" />
+                            <path
+                                d="M38.207 6.37124C38.207 3.62998 35.9377 1.40234 33.146 1.40234C30.3543 1.40234 28.085 3.62421 28.085 6.37124C28.085 9.11828 30.3543 11.3401 33.146 11.3401C35.9377 11.3401 38.207 9.11828 38.207 6.37124ZM29.6752 6.38856C29.6752 4.48987 31.2423 2.94899 33.1808 2.94899C35.1193 2.94899 36.6864 4.48987 36.6864 6.38856C36.6864 8.28724 35.1193 9.82812 33.1808 9.82812C31.2423 9.82812 29.6752 8.28724 29.6752 6.38856Z"
+                                fill="#6429CD" />
+                            <path
+                                d="M34.7598 11.1895C32.8445 11.1895 31.2891 12.713 31.2891 14.5944C31.2891 16.4758 32.8445 17.9993 34.7598 17.9993C36.6751 17.9993 38.2306 16.4758 38.2306 14.5944C38.2306 12.713 36.6751 11.1895 34.7598 11.1895ZM34.783 16.5796C33.6687 16.5796 32.7633 15.6909 32.7633 14.6002C32.7633 13.5094 33.6687 12.6207 34.783 12.6207C35.8974 12.6207 36.8028 13.5094 36.8028 14.6002C36.8028 15.6909 35.8974 16.5796 34.783 16.5796Z"
+                                fill="#6429CD" />
+                            <path
+                                d="M4.7186 1.70312C3.46495 1.70312 2.33318 2.18212 1.48581 2.96122V1.71467H0V6.11223C0 6.18725 0 6.25651 0 6.33153C0 6.40656 0 6.47581 0 6.55083V14.0648H1.49161V9.70761C2.33899 10.4867 3.47075 10.9657 4.7244 10.9657C7.33037 10.9657 9.443 8.89389 9.443 6.3373C9.443 3.78071 7.33037 1.70312 4.7186 1.70312ZM4.75342 9.55757C2.9484 9.55757 1.48581 8.12057 1.48581 6.35462C1.48581 4.58867 2.9484 3.15167 4.75342 3.15167C6.55845 3.15167 8.02104 4.58867 8.02104 6.35462C8.02104 8.12057 6.55845 9.55757 4.75342 9.55757Z"
+                                fill="#1D1D1B" />
+                            <path
+                                d="M26.2683 6.14686V1.70312H24.7824V2.99008C23.9351 2.21098 22.8033 1.73198 21.5497 1.73198C18.9437 1.73198 16.8311 3.8038 16.8311 6.36039C16.8311 8.91698 18.9437 10.9888 21.5497 10.9888C22.8033 10.9888 23.9351 10.5098 24.7824 9.7307V10.9715H26.2683V6.57392C26.2683 6.49889 26.2683 6.42964 26.2683 6.35462C26.2683 6.27959 26.2683 6.21034 26.2683 6.13531V6.14686ZM21.5206 9.55757C19.7156 9.55757 18.253 8.12057 18.253 6.35462C18.253 4.58867 19.7156 3.15167 21.5206 3.15167C23.3257 3.15167 24.7882 4.58867 24.7882 6.35462C24.7882 8.12057 23.3257 9.55757 21.5206 9.55757Z"
+                                fill="#1D1D1B" />
+                            <path
+                                d="M63.9997 6.36616C63.9997 6.29113 63.9997 6.22188 63.9997 6.14686V1.70312H62.5139V2.99008C61.6665 2.21098 60.5347 1.73198 59.2811 1.73198C56.6751 1.73198 54.5625 3.8038 54.5625 6.36039C54.5625 8.91698 56.6751 10.9888 59.2811 10.9888C60.5347 10.9888 61.6665 10.5098 62.5139 9.7307V10.9715H63.9997V6.57392C63.9997 6.49889 63.9997 6.42964 63.9997 6.35462V6.36616ZM59.2463 9.55756C57.4413 9.55756 55.9787 8.12057 55.9787 6.35462C55.9787 4.58867 57.4413 3.15167 59.2463 3.15167C61.0513 3.15167 62.5139 4.58867 62.5139 6.35462C62.5139 8.12057 61.0513 9.55756 59.2463 9.55756Z"
+                                fill="#1D1D1B" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_12879_10814">
+                                <rect width="64" height="18" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+
+                    <span style="font-size: 12px;">www.pragma.co</span>
+                </div>
+            </footer>
+        </main>
+
+    </div>
+</body>
+
+</html>
